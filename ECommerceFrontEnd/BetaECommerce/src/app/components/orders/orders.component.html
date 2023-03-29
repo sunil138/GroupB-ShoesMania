@@ -1,0 +1,73 @@
+<div class="container custom">
+    <p>OrderId:{{orderResponse.OrderId}}</p>
+   <p>TotalAmount:{{orderResponse.TotalAmount}}</p>
+    <p>Please fill the below payment details form.</p>
+</div>
+
+<!-- (ngSubmit)="addPayment()" -->
+
+<div class="container">
+    <div>
+        <div class="container"> 
+          <h4>Payment Form</h4> 
+        <form  #ngForm="ngForm"  >    
+          <div class="form-group"> 
+            <label for="">User Name</label> 
+            <input type="text" class="form-control" id="UserName" placeholder="Enter UserName" name="UserName" [(ngModel)]="pay.UserName" required>
+            <div *ngIf="ngForm.controls['UserName'].touched && ngForm.controls['UserName'].invalid">
+              <small class="text-danger" *ngIf="ngForm.hasError('required','UserName')">*User Name is required</small>
+            </div>
+          
+            
+          </div>
+          <div class="form-group"> 
+            <label for="">Payment Type</label>
+            <select name="paymentType" id="PaymentType" [(ngModel)]="pay.PaymentType">  
+      
+             <option value="UPI">UPI</option>
+              
+              <option value="CreditCard">CreditCard</option>
+              
+              <option value="DebitCard">DebitCard</option>
+      
+              <option value="cash">Cash</option>
+              
+            </select>
+            <input type="text" class="form-control" id="PaymentType" placeholder="Enter PaymentType" name="PaymentType" [(ngModel)]="pay.PaymentType" required>
+            <div *ngIf="ngForm.controls['PaymentType'].touched && ngForm.controls['PaymentType'].invalid">
+              <small class="text-danger" *ngIf="ngForm.hasError('required','PaymentType')">*Payment Type is required</small>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label for="">Amount</label> 
+            <input type="text" class="form-control" id="Amount" placeholder="Enter TotalPayment" name="Amount" [(ngModel)]="pay.Amount" required>
+            <div *ngIf="ngForm.controls['Amount'].touched && ngForm.controls['Amount'].invalid">
+              <small class="text-danger" *ngIf="ngForm.hasError('required','Amount')">*Amountt is required</small>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label for="">Delivery Address</label>
+            <input type="text" class="form-control" id="DeliveryAddress" placeholder="Enter DeliveryAddress" name="DeliveryAddress" [(ngModel)]="pay.DeliveryAddress" required>
+            <div *ngIf="ngForm.controls['DeliveryAddress'].touched && ngForm.controls['DeliveryAddress'].invalid">
+              <small class="text-danger" *ngIf="ngForm.hasError('required','DeliveryAddress')">*Delivery Address is required</small>
+            </div>
+          </div>
+          <!-- <div class="form-group"> 
+            <label for="">Colour</label>
+            <input type="text" class="form-control" id="categoryName" placeholder="Enter CategoryName" name="CategoryName" [(ngModel)]="pro.Colour"> 
+          </div> -->
+          <button type="submit" class="btn btn-primary"[disabled]="ngForm.invalid"(click)="addPayment()">Submit</button> 
+          <div *ngIf="ngForm.invalid && (ngForm.dirty || ngForm.touched)">
+            <small class="text-danger">Please enter all required fields</small>
+          </div>
+        </form>
+      </div>
+      
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,262 @@
+{
+  "Routes": [
+    //Products APIs
+    {
+      //getAllProducts
+      "DownstreamPathTemplate": "/api/Product/getAllProducts",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7202
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/getAllProducts",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ],
+
+    },
+    {
+      //getProductById
+      "DownstreamPathTemplate": "/api/Product/getProductById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7202
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/getProductById/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+
+
+    },
+    {
+      //addProduct
+      "DownstreamPathTemplate": "/api/Product/addNewProduct",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7202
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/addNewProduct",
+      "UpstreamHttpMethod": [ "POST" ] 
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+
+    },
+    {
+      //updateProduct
+      "DownstreamPathTemplate": "/api/Product/updateProduct",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7202
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/updateProduct",
+      "UpstreamHttpMethod": [ "PUT" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+
+    },
+    {
+      //deleteProduct
+
+      "DownstreamPathTemplate": "/api/Product/deleteProduct/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7202
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product/deleteProduct/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ] 
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+
+    },
+    //User Api's
+    {
+      //register
+      "DownstreamPathTemplate": "/api/Authentication/register",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", 
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Authentication/register",
+      "UpstreamHttpMethod": [ "POST" ]
+
+
+    },
+    {
+      //login
+      "DownstreamPathTemplate": "/api/Authentication/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Authentication/login",
+      "UpstreamHttpMethod": [ "POST" ]
+
+
+    },
+    {
+      //forgotPassword
+      "DownstreamPathTemplate": "/api/Authentication/forgotPassword",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Authentication/forgotPassword",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      //resetPassword
+      "DownstreamPathTemplate": "/api/Authentication/resetPassword",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/Authentication/resetPassword",
+      "UpstreamHttpMethod": [ "POST" ]
+
+
+    },
+    { //user API's
+      "DownstreamPathTemplate": "/api/User",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user",
+      "UpstreamHttpMethod": [ "GET" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      //get user by id
+      "DownstreamPathTemplate": "/api/User/getUserById/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      //UpdateUser Api
+      "DownstreamPathTemplate": "/api/User/updateUser",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user/updateUser",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      //delete User
+      "DownstreamPathTemplate": "/api/User/deleteUser/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7196
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/user/deleteUser/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    
+    {
+      //getCartByUserId
+      "DownstreamPathTemplate": "/api/Cart/getCartByUserId/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7045
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/cart/{userId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      //Add to cart for User
+      "DownstreamPathTemplate": "/api/Cart/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7045
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/addCart/{userId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      //Add Payment Api
+      "DownstreamPathTemplate": "/api/Payment/AddPayment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7144
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/payment/addPayment",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      //get allorders by userId
+      "DownstreamPathTemplate": "/api/Orders",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7027
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/orders",
+      "UpstreamHttpMethod": ["GET"]  
+    }
+
+  ]
+}
+ 

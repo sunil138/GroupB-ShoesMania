@@ -1,0 +1,75 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <div class="table-responsive-lg">
+                <table class="table table-success">
+                    <thead>
+                        <tr>
+                            <th scope="col">ProductName</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="">
+                            <td scope="row">{{product.name}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.price}}</td>
+                            <td><button type="button" (click)="addToCart()" [disabled]="!authService.isloggedin()" class="btn btn-primary">Add to Cart
+                                <span *ngIf="!authService.isloggedin()">(Login First)</span>
+                            </button></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div> -->
+
+<main>
+
+    <div class="product-container">
+
+    <div class="image-gallery">
+
+    <div class="main-image">
+
+    <img src="https://source.unsplash.com/random/150x150?{{product.name}}" alt="Main Image">
+
+</div>
+
+
+
+</div>
+
+<div class="product-details">
+
+<h2>{{ product.name }}</h2>
+
+<p>{{product.description}}</p>
+
+ <p>{{ product.price |currency:'INR'}}</p>
+
+<div class="button-container">
+
+<button class="add-to-cart-button" (click)="addToCart()" [disabled]="!authService.isloggedin()" >Add to Cart
+    <span *ngIf="!authService.isloggedin()">(Login First)</span>
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+<div *ngIf="!product" class="loading-container">
+
+<p>Loading product...</p>
+
+</div>
+
+</main>

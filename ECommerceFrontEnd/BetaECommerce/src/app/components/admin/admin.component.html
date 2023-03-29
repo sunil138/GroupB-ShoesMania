@@ -1,0 +1,421 @@
+
+<h3 style="text-align: center;">Registered Users</h3>
+<div>
+    <div class="container"> 
+       <table class="table  table-bordered">        
+         <thead>
+           <tr>
+             <th scope="col">UserName</th>
+             <th scope="col">Email</th>
+             <th scope="col">Role</th>
+             <th scope="col">City</th>
+             <th scope="col">Address</th>
+             <th scope="col">Actions</th>    
+           </tr>
+         </thead>
+         <tbody>
+           <tr class="" *ngFor="let ele of userList">        
+             <td>{{ele.userName}}</td> 
+             <td>{{ele.email}}</td>  
+             <td>{{ele.role}}</td>
+             <td>{{ele.city}}</td>
+             <td>{{ele.address}}</td>  
+             <td>  
+             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId" (click)="GetUserbyid(ele)"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+             <button type="button" class="btn btn-danger" (click)="deleteUser(ele)" data-bs-toggle="modal" data-bs-target="#modalDelId"><i class="fa-solid fa-trash"></i>Delete</button>   
+           </td>         
+           </tr>  
+         </tbody> 
+       </table>
+     </div>
+   
+    
+     
+     
+     <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">Change the role</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form #ngForm="ngForm" (ngSubmit)="Updateuser()">  
+                        <div class="form-group"> 
+                            <label for="">Role</label>      
+                            <input type="text" class="form-control" id="role" placeholder="Enter Role" name="Role" [(ngModel)]="currentData.role"> 
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit"  [disabled]="ngForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                        </div>
+                  </form>     
+                </div>
+                
+            </div>
+        </div>
+     </div>
+     
+     
+     
+   
+     <div class="modal fade" id="userModal" role="dialog" >
+       <div class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" >Updating User Details</h5>  
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"> 
+               <span aria-hidden="true">&times;</span> 
+             </button>
+           </div>
+           <div class="modal-body"> 
+             <form #ngForm="ngForm" (ngSubmit)="Updateuser()">  
+               <div class="form-group"> 
+                   <label for="">Role</label>      
+                   <input type="text" class="form-control" id="role" placeholder="Enter Role" name="Role" [(ngModel)]="currentData.role"> 
+                 </div>
+                <button type="submit"  class="btn btn-primary" >Save</button>     
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+         </form>     
+    </div>   
+   </div> 
+   </div>
+   </div>
+   
+   </div> 
+
+   <!-- Delete Modal -->
+<div class="modal fade" id="modalDelId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">Delete User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure, you want to delete details of {{currentData.userName}} ?</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary" (click)="DeleteUserById(currentData.userId)" data-bs-dismiss="modal">Yes</button>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+
+ <div class="container">
+   <h3 style="text-align: center;">Products</h3>
+    <div> 
+    <div class="addform custom">    
+        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modaladdId" class="btn btn-success">Add Product</button>
+    </div>
+    
+     
+      <div class="modal fade" id="modaladdId"  role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content"> 
+            <div class="modal-header">
+              <h5 class="modal-title">Adding a Product Form</h5> 
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"> 
+                <span aria-hidden="true">&times;</span>    
+                </button> 
+            </div>
+            <div class="modal-body"> 
+              <div class="container"> 
+              <form #ngForm="ngForm" (ngSubmit)="AddProducts()">    
+                <div class="form-group"> 
+                  <label for="">ProductName</label>      
+                  <input type="text" class="form-control" id="name" placeholder="Enter ProductName" name="productName" [(ngModel)]="pro.name"> 
+                </div>
+                <div class="form-group"> 
+                  <label for="">ProductDescription</label>
+                  <input type="text" class="form-control" id="description" placeholder="Enter ProductDescription" name="productDescription" [(ngModel)]="pro.description">
+                </div>
+                <div class="form-group"> 
+                  <label for="">Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="Enter Price" name="Price" [(ngModel)]="pro.price"> 
+                </div>
+                <!-- <div class="form-group"> 
+                  <label for="">Category</label>
+                  <input type="text" class="form-control" id="category.category" placeholder="Enter Category" name="Category" [(ngModel)]="pro.category.category"> 
+                </div>
+                <div class="form-group"> 
+                  <label for="">SubCategory</label>
+                  <input type="text" class="form-control" id="category.subCategory" placeholder="Enter SubCategory" name="SubCategory" [(ngModel)]="pro.category.subCategory"> 
+                </div> -->
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button> 
+                <button type="reset" class="btn btn-danger">Reset</button>  
+              </form>  
+              </div>  
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    
+    
+      
+      <div class="container"> 
+        <table class="table  table-bordered">        
+          <thead>
+            <tr>
+              <th scope="col">ProductName</th>
+              <th scope="col">ProductDescription</th>
+              <th scope="col">ProductPrice</th>
+              <!-- <th scope="col">Category</th>
+              <th scope="col">SubCategory</th> -->
+              <th scope="col">Actions</th>    
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="" *ngFor="let ele of productList">        
+              <td>{{ele.name}}</td>
+              <td>{{ele.description}}</td>  
+              <td>{{ele.price}}</td>
+              <!-- <td>{{ele.category.category}}</td>
+              <td>{{ele.category.subCategory}}</td>   -->
+              <td>  
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalupdate" (click)="GetProductsById(ele)"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+              <button type="button" class="btn btn-danger" (click)=" DeleteProducts(ele.productId)"><i class="fa-solid fa-trash"></i>Delete</button>  
+            </td>        
+            </tr>  
+          </tbody> 
+        </table>
+      </div>
+      
+      <div class="modal fade" id="exampleModalupdate" role="dialog" > 
+        <div class="modal-dialog">
+          <div class="modal-content"> 
+            <div class="modal-header"> 
+              <h5 class="modal-title" >Updating Product Details</h5>  
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"> 
+                <span aria-hidden="true">&times;</span> 
+              </button>
+            </div>
+            <div class="modal-body"> 
+              <form #ngForm="ngForm" (ngSubmit)="UpdateProducts()">  
+                <div class="form-group"> 
+                    <label for="">ProductName</label>      
+                    <input type="text" class="form-control" id="name" placeholder="Enter ProductName" name="productName" [(ngModel)]="currentdata.name"> 
+                  </div>
+                  <div class="form-group"> 
+                    <label for="">ProductDescription</label>
+                    <input type="text" class="form-control" id="description" placeholder="Enter ProductDescription" name="productDescription" [(ngModel)]="currentdata.description">
+                  </div>
+                  <div class="form-group"> 
+                    <label for="">Price</label>
+                    <input type="text" class="form-control" id="price" placeholder="Enter Price" name="Price" [(ngModel)]="currentdata.price">  
+                  </div>
+                 <button type="submit"  class="btn btn-primary" data-bs-dismiss="modal">Save</button>     
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
+          </form>    
+     </div>   
+    </div> 
+  </div>
+ </div>  
+ </div> 
+</div> 
+ 
+
+
+<!-- <h3 style="text-align: center;">Registered Users</h3>
+<div>
+    <div class="container"> 
+       <table class="table  table-bordered">        
+         <thead>
+           <tr>
+             <th scope="col">UserName</th>
+             <th scope="col">Email</th>
+             <th scope="col">Role</th>
+             <th scope="col">City</th>
+             <th scope="col">Address</th>
+             <th scope="col">Actions</th>    
+           </tr>
+         </thead>
+         <tbody>
+           <tr class="" *ngFor="let ele of userList">        
+             <td>{{ele.userName}}</td> 
+             <td>{{ele.email}}</td>  
+             <td>{{ele.role}}</td>
+             <td>{{ele.city}}</td>
+             <td>{{ele.address}}</td>  
+             <td>  
+             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId" (click)="GetUserbyid(ele)"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+             <button type="button" class="btn btn-danger" (click)="deleteUser(ele)" data-bs-toggle="modal" data-bs-target="#modalDelId"><i class="fa-solid fa-trash"></i>Delete</button>   
+           </td>         
+           </tr>   
+         </tbody> 
+       </table>
+     </div>
+   
+     
+     
+     
+     <div class="modal fade" id="modalId" tabindex="-1"  role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">Updating the Role</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #ngForm="ngForm" (ngSubmit)="Updateuser()">  
+              <div class="form-group"> 
+                  <label for="">Role</label>      
+                  <input type="text" class="form-control" id="role" placeholder="Enter Role" name="Role" [(ngModel)]="currentData.role"> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit"  [disabled]="ngForm.invalid" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+              </div>
+        </form>     
+          </div>
+        </div> 
+      </div>
+     </div>
+     
+     
+     
+   
+     
+     
+     <div class="modal fade" id="modalDelId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure, you want to delete details of {{currentData.userName}} ?</p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="DeleteUserById(currentData.userId)" data-bs-dismiss="modal">Yes</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+     </div>
+     
+     
+   
+     <div class="container">
+      <h3 style="text-align: center;">Products</h3>
+       <div> 
+       <div class="addform custom">    
+           <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#modalAddId" class="btn btn-success">Add Product</button>
+       </div> 
+     
+       
+    
+      
+       <div class="modal fade" id="modalAddId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #ngForm="ngForm" (ngSubmit)="AddProducts()">    
+                <div class="form-group"> 
+                  <label for="">ProductName</label>      
+                  <input type="text" class="form-control" id="name" placeholder="Enter ProductName" name="productName" [(ngModel)]="pro.name"> 
+                </div>
+                <div class="form-group"> 
+                  <label for="">ProductDescription</label>
+                  <input type="text" class="form-control" id="description" placeholder="Enter ProductDescription" name="productDescription" [(ngModel)]="pro.description">
+                </div>
+                <div class="form-group"> 
+                  <label for="">Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="Enter Price" name="Price" [(ngModel)]="pro.price"> 
+                </div>
+                <div class="form-group"> 
+                  <label for="">Category</label>
+                  <input type="text" class="form-control" id="category.category" placeholder="Enter Category" name="Category" [(ngModel)]="pro.category.category"> 
+                </div>
+                <div class="form-group"> 
+                  <label for="">SubCategory</label>
+                  <input type="text" class="form-control" id="category.subCategory" placeholder="Enter SubCategory" name="SubCategory" [(ngModel)]="pro.category.subCategory"> 
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button> 
+                <button type="reset" class="btn btn-danger">Reset</button>  
+              </form> 
+            </div>
+          </div>
+        </div>
+       </div>
+       
+       
+     
+
+       <div class="container"> 
+        <table class="table  table-bordered">        
+          <thead>
+            <tr>
+              <th scope="col">ProductName</th>
+              <th scope="col">ProductDescription</th>
+              <th scope="col">ProductPrice</th>
+              <th scope="col">Category</th>
+              <th scope="col">SubCategory</th>
+              <th scope="col">Actions</th>    
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="" *ngFor="let ele of productList">        
+              <td>{{ele.name}}</td>
+              <td>{{ele.description}}</td>  
+              <td>{{ele.price}}</td>
+              <td>{{ele.category.category}}</td>
+              <td>{{ele.category.subCategory}}</td>  
+              <td>  
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdateId" (click)="GetProductsById(ele)"><i class="fa-solid fa-pen-to-square"></i>Edit</button>
+              <button type="button" class="btn btn-danger" (click)=" DeleteProducts(ele.productId)"><i class="fa-solid fa-trash"></i>Delete</button>  
+            </td>        
+            </tr>   
+          </tbody> 
+        </table>
+      </div> 
+
+
+     
+      
+     
+      <div class="modal fade" id="modalUpdateId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form #ngForm="ngForm" (ngSubmit)="UpdateProducts()">  
+                <div class="form-group"> 
+                    <label for="">ProductName</label>       
+                    <input type="text" class="form-control" id="name" placeholder="Enter ProductName" name="productName" [(ngModel)]="currentdata.name"> 
+                  </div>
+                  <div class="form-group"> 
+                    <label for="">ProductDescription</label>
+                    <input type="text" class="form-control" id="description" placeholder="Enter ProductDescription" name="productDescription" [(ngModel)]="currentdata.description">
+                  </div>
+                  <div class="form-group"> 
+                    <label for="">Price</label> 
+                    <input type="text" class="form-control" id="price" placeholder="Enter Price" name="Price" [(ngModel)]="currentdata.price">  
+                  </div>
+                 <button type="submit"  class="btn btn-primary" >Save</button>     
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>  
+          </form>    
+            </div>
+          </div>
+        </div>
+      </div>
+       -->
+      
+    
